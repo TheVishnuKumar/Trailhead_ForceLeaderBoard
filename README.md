@@ -1,4 +1,4 @@
-# (Create Your personal Leader Board in 10 Minutes) ForceLeaderBoard - Track Trailhead Badges and Certifications
+# (Create Your Personal Leader Board in 10 Minutes) ForceLeaderBoard - Track Trailhead Badges and Certifications
 <a href="https://githubsfdeploy.herokuapp.com?owner=vishnuvaishnav&repo=Trailhead_ForceLeaderBoard">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
