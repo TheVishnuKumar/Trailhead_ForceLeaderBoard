@@ -7,6 +7,7 @@
         <members>HeaderComponent</members>
         <members>HomeController</members>
         <members>LeaderBoardController</members>
+        <members>ManualRefresh</members>
         <members>PageMessage</members>
         <members>ProfileController</members>
         <members>Session</members>
@@ -28,6 +29,7 @@
         <members>Home</members>
         <members>LeaderBoard</members>
         <members>Profile</members>
+        <members>RefreshNow</members>
         <members>TrailblazersBlogs</members>
         <name>ApexPage</name>
     </types>
