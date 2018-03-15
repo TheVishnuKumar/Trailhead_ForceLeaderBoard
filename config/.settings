@@ -1,0 +1,17 @@
+{
+    "projectName": "Trailhead_ForceLeaderBoard",
+    "username": "vishnu@forceleaderboard.com",
+    "id": "7b968e70-2896-11e8-82ed-877cbd7f6908",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://forceleaderboard-dev-ed.my.salesforce.com",
+    "workspace": "/My Drive/W Drive",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}
