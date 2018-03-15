@@ -5,6 +5,7 @@ Click on this Magic button to Get Your Own LeaderBoard
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 <br/>
+<br/>
 Steps to follow after Deploying project in salesforce org:
 
 1. Add these 2 Remote Site Settings:
@@ -37,10 +38,10 @@ Ask your friends and colleague to Join the your personal leaderboard.
 <br/>
 
 Cheers!!
-
+<br/><br/>
+<i>Note: You may need to change some of links in this project for your customization.</i>
+<br/><br/>
 <br/>
-Please hit below button for any suggestions and feedback.
 <a href="https://0to1code.wordpress.com/contact/">
-  <img alt="Feedback"
-       src="http://bourbonstreetshots.com/wp-content/uploads/2014/01/tumblr_m73mpnaKdX1qb1v08.jpg">
+  <img src="http://bourbonstreetshots.com/wp-content/uploads/2014/01/tumblr_m73mpnaKdX1qb1v08.jpg" style="max-width: 100%;border-radius: 20px;box-shadow: 1px 4px 23px 6px #53497b;height: 115px;">
 </a>
