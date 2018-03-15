@@ -1,0 +1,229 @@
+<apex:page controller="ProfileController" title="Profile" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" lightningStylesheets="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <apex:slds />
+            <style>
+                .dataTbl thead tr th{
+                padding:10px !important;
+                }
+                body{
+                margin: 0px !important;
+                }
+                .logos img{
+                height:32px;
+                border-radius: 15px;
+                }
+                .statusIndi{
+                display:none;
+                }
+                .profilePanel{
+                width: 200px;
+                text-align: center;
+                border-radius: 16px;
+                box-shadow: 1px 3px 14px 0px #888888;
+                padding: 8px;
+                height: 225px;
+                margin-left: 12px;
+                
+                }
+                .logos a img{
+                height: 32px;
+                }
+                .pos{
+                    color: #1d48f5;
+                    position: absolute;
+                    margin-left: -90px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="slds-scope">
+                <apex:form id="frm">
+                    <apex:actionFunction name="refreshData" action="{!initRefresh}" reRender="frm" status="actionStatus"/>
+                    <c:HeaderComponent tab="profile"/>
+                    <c:PageMessages />
+                    
+                    <apex:outputPanel layout="none" rendered="{!userId!='' && userId != null }">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="slds-form slds-form_stacked" style="margin: 50px 200px 10px 200px;">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Trailhead Profile URL <span style="color:red;">*</span>
+                                            <a target="_Blank" href="https://0to1code.wordpress.com/2018/02/25/salesforce-trailhead-and-certification-leader-board-forceleaderboard-unofficial/">Help</a>
+                                            </label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Trailhead_URL__c}" styleClass="slds-input" required="true" html-placeholder="Ex: https://trailhead.salesforce.com/en/me/thevishnukumar"/>
+                                                <span style="color: #ff9393;">Your trailhead profile should not be private.</span>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Certification URL</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Certification_URL__c}" styleClass="slds-input" html-placeholder="Ex: http://certification.salesforce.com/certification-detail-print?conId=003G000002FKLb0IAH"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Facebook</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Facebook__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Linkedin URL</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Linkedin__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Twitter URL</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Twitter__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Website/Blog Name</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Website_Name__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Website/Blog URL</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Website_URL__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Website/Blog Logo URL</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Website_Logo_URL__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Description of Website/Blog</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Website_Description__c}" styleClass="slds-input" style="height: 150px;"/>
+                                                <span>Max: 255 Character</span>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Trailblazer ID</label>
+                                            <div class="slds-form-element__control">
+                                                <input tyep="text" class="slds-input" value="{!usrObj.Trailblazer_ID__c}" disabled="disabled"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <apex:commandButton value="Update" action="{!save}" styleClass="slds-button slds-button_brand" reRender="frm" status="actionStatus" oncomplete="refreshData();"/>
+                                                <apex:commandButton value="Logout" action="{!logout}" styleClass="slds-button slds-button_neutral" immediate="true"/>
+                                            </div>
+                                        </div>
+                                    </div>       
+                                </td>
+                                
+                                <td style="vertical-align: top;padding-top: 50px;">
+                                    <div class="profilePanel">
+                                        <div>
+                                            <img src="{!usrObj.Profile_URL__c}" class="avatar" style="height: 50px;border-radius: 50%;"/>
+                                        </div>
+                                        <div>
+                                            <a href="{!usrObj.Trailhead_URL__c}" target="_Blank" style="text-transform: capitalize;">{!usrObj.Name__c}</a>
+                                            <br/>
+                                            <span>{!usrObj.title__c}</span>
+                                            <br/>
+                                            <span style="text-transform: capitalize;">{!usrObj.Rank__c}</span>
+                                        </div>
+                                        <div style="margin-top: 5px;">
+                                            <table>
+                                                <tr>
+                                                    <td style="text-align: center;">Badges</td>
+                                                    <td style="text-align: center;">Points</td>
+                                                    <apex:outputPanel layout="none" rendered="{!usrObj.Certifications__c != 0}">
+                                                        <td style="text-align: center;">Certification</td>
+                                                    </apex:outputPanel>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;font-size: 16px;">
+                                                        <span >{!usrObj.Badges__c}</span>
+                                                    </td>
+                                                    <td style="text-align: center;font-size: 16px;">
+                                                        <span >{!usrObj.Points__c}</span>
+                                                    </td>
+                                                    <apex:outputPanel layout="none" rendered="{!usrObj.Certifications__c != 0}">
+                                                        <td style="text-align: center;font-size: 16px;">
+                                                            <a href="{!usrObj.Certification_URL__c}" target="_Blank">{!usrObj.Certifications__c}</a>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="logos" style="margin-top: 5px;">
+                                            <a href="{!usrObj.Trailhead_URL__c}" target="_Blank">
+                                            <img src="https://trailhead.salesforce.com/assets/trailhead-flogo-1c99be34ac805c0cb128c1bb5e0cf6570943530f86063bebb1cf576c93c30069.png" class="avatar"/>
+                                            </a>
+                                            <apex:outputPanel layout="none" rendered="{!usrObj.Certifications__c != 0}">
+                                                <a href="{!usrObj.Certification_URL__c}" target="_Blank">
+                                                <img src="http://www.runconsultants.com/wp-content/uploads/2014/04/cert_program_rgb-e1390842424619.png" class="avatar"/>
+                                                </a>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel layout="none" rendered="{!usrObj.Facebook__c != null && usrObj.Facebook__c != '' }">
+                                                <a href="{!usrObj.Facebook__c}" target="_Blank">
+                                                <img src="https://grytics.com/wp-content/uploads/2015/01/1414386628_facebook_circle_color-512.png" class="avatar"/>
+                                                </a>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel layout="none" rendered="{!usrObj.Linkedin__c != null && usrObj.Linkedin__c != '' }">
+                                                <a href="{!usrObj.Linkedin__c}" target="_Blank">
+                                                <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" class="avatar"/>
+                                                </a>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel layout="none" rendered="{!usrObj.Twitter__c != null && usrObj.Twitter__c != '' }">
+                                                <a href="{!usrObj.Twitter__c}" target="_Blank">
+                                                <img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" class="avatar"/>
+                                                </a>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <apex:outputPanel layout="block" rendered="{!usrObj.Website_URL__c != null && usrObj.Website_URL__c != '' && usrObj.Website_Description__c != null && usrObj.Website_Description__c != '' && usrObj.Website_Name__c != null && usrObj.Website_Name__c != ''}" style="margin-top: 5px;">
+                                            <div class="slds-truncate"><a href="{!usrObj.Website_URL__c}" target="_Blank">{!usrObj.Website_Name__c}</a></div>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <br/>
+                                    <div><a target="_Blank" href="https://0to1code.wordpress.com/2018/03/04/trailhead-widget-add-customize-using-flb-api/">Get your Widget for your Website/Blogs.</a></div>
+                                </td>
+                            </tr>
+                        </table>    
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="none" rendered="{!userId=='' || userId == null }">
+                        <div class="slds-form slds-form_stacked" style="margin: 50px 200px 50px 200px;">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">Email</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputField value="{!usrObj.Username__c}" styleClass="slds-input" required="true"/>
+                                </div>
+                            </div>
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">Password</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputSecret value="{!usrObj.Password__c}" styleClass="slds-input"/>
+                                </div>
+                                <span>Please remember your password because I haven't build forgot password code. :)</span>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <apex:commandButton value="Signin/Signup" action="{!login}" styleClass="slds-button slds-button_brand" reRender="frm" status="actionStatus"/>
+                                </div>
+                            </div>
+                        </div>     
+                    </apex:outputPanel>
+                  
+                </apex:form>
+            </div>
+        </body>
+    </html>
+</apex:page>

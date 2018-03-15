@@ -1,0 +1,111 @@
+<apex:page controller="APIExplorerController" title="Profile" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" lightningStylesheets="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <apex:slds />
+            <style>
+                .dataTbl thead tr th{
+                padding:10px !important;
+                }
+                body{
+                margin: 0px !important;
+                }
+                .logos img{
+                height:32px;
+                border-radius: 15px;
+                }
+                .statusIndi{
+                display:none;
+                }
+                .profilePanel{
+                width: 200px;
+                text-align: center;
+                border-radius: 16px;
+                box-shadow: 1px 3px 14px 0px #888888;
+                padding: 8px;
+                float: left;
+                height: 212px;
+                margin-left: 12px;
+                
+                }
+                .logos a img{
+                height: 32px;
+                }
+                .pos{
+                    color: #1d48f5;
+                    position: absolute;
+                    margin-left: -90px;
+                }
+                
+                .callPanels{
+                    margin: 50px 200px 10px 200px;
+                    border: 1px solid #0f70d2;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .sectionHeader{
+                    background: #fbfafa;
+                    padding: 7px;
+                    border-radius: 5px;
+                    margin-bottom: 8px;
+                }
+                .sectionHeading{
+                    text-transform: uppercase;
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+            </style>
+            
+            <script>
+                function jsonCool(tid){
+                    var obj = JSON.parse(document.getElementById(tid).value);
+                    var pretty = JSON.stringify(obj, undefined, 4);
+                    document.getElementById(tid).value = pretty;
+                }
+            </script>
+        </head>
+        <body>
+            <div class="slds-scope">
+                <apex:form id="frm">
+                    <c:HeaderComponent tab="api"/>
+                    <c:PageMessages />
+                    
+                    <a href="https://0to1code.wordpress.com/2018/02/27/introducing-trailhead-force-leader-board-api/" target="_Blank" style="margin-left: 200px;top: 58px;position: absolute;font-size: 17px;">Help</a>
+                    
+                    <apex:outputPanel layout="block" styleClass="slds-form slds-form_stacked callPanels" id="trailblazerProfilePanel">
+                        <div class="sectionHeader"><span class="sectionHeading">1. Trailblazer Profile:</span> Get trailblazers profile data using trailblazer ID.</div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Trailblazer ID</label><span style="font-size: 10px;">(<a href="/apex/profile">Login</a> to your profile. Copy Trailblazer Id and paste here.)</span>
+                            <div class="slds-form-element__control">
+                                <apex:inputText value="{!trailblazerProfile_Id}" styleClass="slds-input" html-placeholder="YOUR_TRAILBLAZER_ID"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Request (Method:GET)</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" value="{!trailblazerProfileReqUrl_Show}" Class="slds-input"  disabled="disabled"/>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Response</label>
+                            <div class="slds-form-element__control">
+                                <textarea Class="slds-input" style="height: 200px;" id="trailblazeProfileResp">{!trailblazerProfileResponse}</textarea>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <apex:commandButton action="{!getTrailblazerProfile}" value="Make Request" styleClass="slds-button slds-button_brand" reRender="trailblazerProfilePanel" status="actionStatus" oncomplete="jsonCool('trailblazeProfileResp');"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    
+                               
+                </apex:form>
+            </div>
+        </body>
+    </html>
+</apex:page>

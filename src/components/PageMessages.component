@@ -1,0 +1,7 @@
+<apex:component controller="PageMessage">
+    <apex:repeat value="{!pageMsgs}" var="msg">
+        <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_{!msg.messageType}" role="alert" style="margin-top: 2px;">
+          <h2><apex:outputText escape="false" value="{!msg.message}"></apex:outputText></h2>
+        </div>
+    </apex:repeat>
+</apex:component>

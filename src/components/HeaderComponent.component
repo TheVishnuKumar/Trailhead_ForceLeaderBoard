@@ -1,0 +1,119 @@
+<apex:component controller="HeaderComponent">
+
+<apex:attribute name="tab" type="string" description="tab name"/>
+
+<div>
+    <div class="slds-context-bar">
+        <div class="slds-context-bar__primary">
+            <div class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover">
+                <div class="slds-context-bar__icon-action">
+                    <img src="{!$Resource.logo}" style="height: 32px;"/>
+                </div>
+                <span class="slds-context-bar__label-action slds-context-bar__app-name">
+                <span class="slds-truncate" title="App Name">Leader Board</span>
+                </span>
+            </div>
+        </div>
+        <nav class="slds-context-bar__secondary" role="navigation">
+            <ul class="slds-grid">
+                <li class="slds-context-bar__item {!if(tab=='Home','slds-is-active','')}">
+                    <a href="/apex/home" class="slds-context-bar__label-action">
+                    <span class="slds-truncate">Home</span>
+                    </a>
+                </li>
+                <li class="slds-context-bar__item {!if(tab=='Board','slds-is-active','')}">
+                    <a href="/apex/LeaderBoard" class="slds-context-bar__label-action">
+                    <span class="slds-truncate">Trailblazers Board</span>
+                    </a>
+                </li>
+                <li class="slds-context-bar__item {!if(tab=='blogs','slds-is-active','')}">
+                    <a href="/apex/TrailblazersBlogs" class="slds-context-bar__label-action">
+                    <span class="slds-truncate">Trailblazers Blogs</span>
+                    </a>
+                </li>
+                <li class="slds-context-bar__item">
+                    <a href="https://0to1code.wordpress.com/2018/03/04/trailhead-widget-add-customize-using-flb-api/" class="slds-context-bar__label-action">
+                        <span class="slds-truncate">Trailhead Widget</span>
+                    </a>
+                </li>
+                <li class="slds-context-bar__item {!if(tab=='api','slds-is-active','')}">
+                    <a href="/apex/APIExplorer" class="slds-context-bar__label-action">
+                        <span class="slds-truncate">APIs</span>
+                    </a>
+                </li>
+ 
+                <li class="slds-context-bar__item">
+                    <a href="https://trailhead.salesforce.com/" class="slds-context-bar__label-action">
+                        <span class="slds-truncate">Trailhead</span>
+                    </a>
+                </li>
+
+                <li class="slds-context-bar__item">
+                    <a href="https://0to1code.wordpress.com/2018/02/25/salesforce-trailhead-and-certification-leader-board-forceleaderboard-unofficial/" class="slds-context-bar__label-action">
+                        <span class="slds-truncate">About</span>
+                    </a>
+                </li>
+                
+                <apex:outputPanel layout="none" rendered="{!usrObj.id == null }">
+                    <li class="slds-context-bar__item {!if(tab=='profile','slds-is-active','')}">
+                        <a href="/apex/profile" class="slds-context-bar__label-action">
+                            <span class="slds-truncate">Join Board</span>
+                        </a>
+                    </li>
+                </apex:outputPanel>
+                <apex:outputPanel layout="none" rendered="{!usrObj.id != null }">
+                    <li class="slds-context-bar__item {!if(tab=='profile','slds-is-active','')}">
+                        <a href="/apex/profile" class="slds-context-bar__label-action">
+                            <span class="slds-truncate">{!if( usrObj.name__c!= null , usrObj.name__c, usrObj.username__c) }</span>
+                        </a>
+                    </li>
+                </apex:outputPanel>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script>
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+    }
+    
+    function hideModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+    
+    function showStatus(){
+        document.getElementById('{!$Component.actionStatus}.start').style.display = 'block';
+    }
+    
+    function hideStatus(){
+        document.getElementById('{!$Component.actionStatus}.start').style.display = 'none';
+    }
+</script>
+
+<style>
+    .statusOverlay{
+        width: 100%;
+        height: 2000px;
+        background: black;
+        z-index: 10000;
+        position: fixed;
+        top: 0;
+        margin-left: -10px;
+        opacity: .1;
+    }
+</style>
+
+<apex:actionStatus id="actionStatus" >
+    <apex:facet name="start" >
+        <div id="actionStatusDiv">
+            <div role="status" class="slds-spinner slds-spinner_medium" style="z-index: 10000;">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+            <div class="statusOverlay"></div>
+        </div>
+    </apex:facet>
+</apex:actionStatus>
+</apex:component>

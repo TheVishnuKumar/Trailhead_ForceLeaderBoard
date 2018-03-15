@@ -1,0 +1,138 @@
+<apex:page controller="TrailblazersBlogController" title="Trailblazers Blogs" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" lightningStylesheets="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <apex:slds />
+            <style>
+                .dataTbl thead tr th{
+                padding:10px !important;
+                }
+                body{
+                margin: 0px !important;
+                }
+                .logos img{
+                height:32px;
+                border-radius: 15px;
+                }
+                .statusIndi{
+                display:none;
+                }
+                .profilePanel{
+                width: 200px;
+                text-align: center;
+                border-radius: 16px;
+                
+                padding: 8px;
+                float: left;
+                height: 225px;
+                margin-left: 12px;
+                
+                }
+                .logos a img{
+                height: 32px;
+                }
+                .pos{
+                    color: #1d48f5;
+                    position: absolute;
+                    margin-left: -90px;
+                }
+                .badgeRank{
+                    text-transform: capitalize;
+                    color: green;
+                    font-weight: 600;
+                }
+                .logos{
+                    right: 10px !important;
+                    top: 5px !important;
+                    position: absolute;
+                }
+                .slds-feed{
+                    border-radius: 5px !important;
+                    box-shadow: 1px 1px 6px 0px #888888 !important;
+                    margin-top: 15px !important;
+                    float: left;
+                    width: 48%;
+                    margin-left: 1% !important;
+                    height: 175px !important;
+                }
+                
+            </style>
+            
+        </head>
+        <body>
+            <div class="slds-scope">
+                <apex:form id="frm">
+                    <c:HeaderComponent tab="blogs"/>
+                    
+                    <apex:outputPanel layout="block" id="dataTable" style="margin-top:10px;">
+                        <span style="position: absolute;right: 5px;color: green;font-size: 10px;">Add your website/blog here using your <a href="/apex/profile">profile</a> settings.</span>
+                        <apex:repeat value="{!lstUsers}" var="usr">
+                            <div class="slds-feed">
+                                <ul class="slds-feed__list">
+                                    <li class="slds-feed__item">
+                                        <article class="slds-post">
+                                            <header class="slds-post__header slds-media">
+                                                <div class="slds-media__figure">
+                                                    <a href="javascript:void(0);" class="slds-avatar slds-avatar_circle slds-avatar_large">
+                                                        <apex:outputPanel layout="none" rendered="{!usr.usrObj.Website_Logo_URL__c!=null && usr.usrObj.Website_Logo_URL__c!='' }">
+                                                            <img src="{!usr.usrObj.Website_Logo_URL__c}" class="avatar" style="height: 50px;border-radius: 50%;"/>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{!usr.usrObj.Website_Logo_URL__c==null || usr.usrObj.Website_Logo_URL__c=='' }">
+                                                            <img src="{!usr.usrObj.Profile_URL__c}" class="avatar" style="height: 50px;border-radius: 50%;"/>
+                                                        </apex:outputPanel>
+                                                    </a>                                                    
+                                                </div>
+                                                <div class="slds-media__body">
+                                                    <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+                                                        <p><a href="{!usr.usrObj.Website_URL__c}" target="_Blank">{!usr.usrObj.Website_Name__c}</a></p>
+                                                    </div>
+                                                    <p class="slds-text-body_small">{!usr.usrObj.Name__c}</p>
+                                                    
+                                                    <div class="logos" style="margin-top: 5px;">
+                                                        <a href="{!usr.usrObj.Trailhead_URL__c}" target="_Blank">
+                                                        <img src="https://trailhead.salesforce.com/assets/trailhead-flogo-1c99be34ac805c0cb128c1bb5e0cf6570943530f86063bebb1cf576c93c30069.png" class="avatar"/>
+                                                        </a>
+                                                        <apex:outputPanel layout="none" rendered="{!usr.usrObj.Certifications__c != 0}">
+                                                            <a href="{!usr.usrObj.Certification_URL__c}" target="_Blank">
+                                                            <img src="http://www.runconsultants.com/wp-content/uploads/2014/04/cert_program_rgb-e1390842424619.png" class="avatar"/>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{! usr.usrObj.Facebook__c != null && usr.usrObj.Facebook__c != '' }">
+                                                            <a href="{!usr.usrObj.Facebook__c}" target="_Blank">
+                                                            <img src="https://grytics.com/wp-content/uploads/2015/01/1414386628_facebook_circle_color-512.png" class="avatar"/>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{! usr.usrObj.Linkedin__c != null && usr.usrObj.Linkedin__c != '' }">
+                                                            <a href="{!usr.usrObj.Linkedin__c}" target="_Blank">
+                                                            <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" class="avatar"/>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{! usr.usrObj.Twitter__c != null && usr.usrObj.Twitter__c != '' }">
+                                                            <a href="{!usr.usrObj.Twitter__c}" target="_Blank">
+                                                            <img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" class="avatar"/>
+                                                            </a>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="slds-post__footer">
+                                                  
+                                                </div>
+                                            </header>
+                                            <div class="slds-post__content slds-text-longform">
+                                                <p><apex:outputField value="{!usr.usrObj.Website_Description__c}"/></p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </div>                            
+                        </apex:repeat>
+                    </apex:outputPanel>
+                </apex:form>
+            </div>
+        </body>
+    </html>
+</apex:page>
