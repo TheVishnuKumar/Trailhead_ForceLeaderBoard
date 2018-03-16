@@ -36,8 +36,14 @@ Steps to follow after Deploying project in salesforce org:
 <br/>
 Ask your friends and colleague to Join the your personal leaderboard.
 <br/>
+<br/>
+Live Working ForceLeaderBoard: https://forceleaderboard-developer-edition.na50.force.com/
+<br/>
+<br/>
 
 Cheers!!
+<br/>
+If you create it then don't forget to share with me :)
 <br/><br/>
 <i>Note: You may need to change some of links in this project for your customization.</i>
 <br/><br/>
