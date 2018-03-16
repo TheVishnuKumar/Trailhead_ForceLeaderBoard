@@ -43,7 +43,7 @@ Live Working ForceLeaderBoard: https://forceleaderboard-developer-edition.na50.f
 
 Cheers!!
 <br/>
-If you create it then don't forget to share with me :)
+<b>If you create it then don't forget to share with me :)</b>
 <br/><br/>
 <i>Note: You may need to change some of links in this project for your customization.</i>
 <br/><br/>
