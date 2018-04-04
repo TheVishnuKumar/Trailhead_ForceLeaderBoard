@@ -16,7 +16,7 @@ public class Utility{
     
     //This will stop job
     public static void stopUpdateDataBatch(){
-        list<CronTrigger> rountingEngineSchedule = [SELECT Id,CronJobDetail.Name FROM CronTrigger Where CronJobDetail.Name ='UpdateDataBatch' limit 1];
+        list<CronTrigger> rountingEngineSchedule = [SELECT Id,CronJobDetail.Name FROM CronTrigger WHERE CronJobDetail.Name ='UpdateDataBatch' LIMIT 1];
         if( !rountingEngineSchedule.isEmpty() ){
             System.abortJob(rountingEngineSchedule[0].id );
         }
@@ -25,8 +25,10 @@ public class Utility{
     //This will start job
     public static void startUpdateDataBatch(integer minutesAfter ){
         Utility.stopUpdateDataBatch();
+        UpdateDataBatch nextBatch = new UpdateDataBatch();
+        nextBatch.intervalInMinutes = minutesAfter;
         datetime nextSchedule = datetime.now().addMinutes(minutesAfter);
-        String sch = '0 '+nextSchedule.minute() +' '+nextSchedule.hour()+' * * ?';
-        system.schedule('UpdateDataBatch', sch, new UpdateDataBatch() );
+        String sch = '0 ' + nextSchedule.minute() + ' ' + nextSchedule.hour() + ' * * ?';
+        system.schedule('UpdateDataBatch', sch, nextBatch);
     }
 }
