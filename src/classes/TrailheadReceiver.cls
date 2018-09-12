@@ -3,11 +3,11 @@
     Website               :    http://0to1code.com/
 */
 public class TrailheadReceiver{
-    static string NAME_START_TAG = '<h1 data-test-user-name="true" data-reactid="2">';
-    static string NAME_END_TAG = '</h1>';
+    static string NAME_START_TAG = 'data-react-props="{&quot;full_name&quot;:&quot;';
+    static string NAME_END_TAG = '&quot;,&quot;work_info&quot;:&quot;';
     
-    static string TITLE_START_TAG = '<h2 data-test-user-work-info="true" data-reactid="3">';
-    static string TITLE_END_TAG = '</h2>';
+    static string TITLE_START_TAG = '&quot;,&quot;work_info&quot;:&quot;';
+    static string TITLE_END_TAG = '&quot;,&quot;bio&quot;:&quot;&quot;}">';
 
     static string BADGE_START_TAG = '<div class=\'user-information__achievements-data\' data-test-badges-count>';
     static string BADGE_END_TAG = '</div>';
@@ -37,7 +37,12 @@ public class TrailheadReceiver{
         HttpResponse response = APIHelper.genericGetCall(endpoint);
         statusCode = response.getStatusCode();
         
+        system.debug('--statusCode--'+statusCode);
+        
         if( statusCode == 200 ){
+            
+            system.debug('--response.getBody()--'+response.getBody());
+            
             string body = response.getBody();
             name = getName(body);
             title = getTitle(body);
