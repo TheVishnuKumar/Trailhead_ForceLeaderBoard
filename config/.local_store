@@ -13,6 +13,20 @@
         "type": "StaticResource",
         "mmState": "clean"
     },
+    "Adv.resource": {
+        "createdById": "0056A000001JZNBQA4",
+        "createdByName": "Trailhead LeaderBoard",
+        "createdDate": "2018-08-13T04:35:32.000Z",
+        "fileName": "unpackaged/staticresources/Adv.resource",
+        "fullName": "Adv",
+        "id": "0816A0000010K8rQAE",
+        "lastModifiedById": "0056A000001JZNBQA4",
+        "lastModifiedByName": "Trailhead LeaderBoard",
+        "lastModifiedDate": "2018-08-13T04:35:32.000Z",
+        "manageableState": "unmanaged",
+        "type": "StaticResource",
+        "mmState": "clean"
+    },
     "trailhead.resource": {
         "createdById": "0056A000001JZNBQA4",
         "createdByName": "Trailhead LeaderBoard",

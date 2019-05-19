@@ -51,6 +51,7 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Adv</members>
         <members>logo</members>
         <members>trailhead</members>
         <name>StaticResource</name>
