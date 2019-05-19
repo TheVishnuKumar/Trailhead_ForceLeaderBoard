@@ -19,6 +19,7 @@
         <members>StringUtil</members>
         <members>TrailblazerAPIController</members>
         <members>TrailblazersBlogController</members>
+        <members>TrailheadReceiver</members>
         <members>TweetUtil</members>
         <members>UpdateDataBatch</members>
         <members>UpdateDataHelper</members>

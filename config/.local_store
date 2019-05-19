@@ -223,6 +223,20 @@
         "type": "ApexClass",
         "mmState": "clean"
     },
+    "TrailheadReceiver.cls": {
+        "createdById": "0056A000001JZNBQA4",
+        "createdByName": "Trailhead LeaderBoard",
+        "createdDate": "2018-02-24T20:04:23.000Z",
+        "fileName": "unpackaged/classes/TrailheadReceiver.cls",
+        "fullName": "TrailheadReceiver",
+        "id": "01p6A000008dVKVQA2",
+        "lastModifiedById": "0056A000001JZNBQA4",
+        "lastModifiedByName": "Trailhead LeaderBoard",
+        "lastModifiedDate": "2018-07-26T05:56:52.000Z",
+        "manageableState": "unmanaged",
+        "type": "ApexClass",
+        "mmState": "clean"
+    },
     "API_UpdateUserInformation.cls": {
         "createdById": "0056A000001JZNBQA4",
         "createdByName": "Trailhead LeaderBoard",
