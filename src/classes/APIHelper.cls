@@ -9,6 +9,7 @@ public class APIHelper{
         HttpRequest request = new HttpRequest();
         request.setEndpoint(endPoint);
         request.setMethod('GET');
+        request.setTimeout(60000);
         return http.send(request);
     } 
 }

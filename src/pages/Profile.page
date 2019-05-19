@@ -86,15 +86,21 @@
                                             </div>
                                         </div>
                                         <div class="slds-form-element">
+                                            <label class="slds-form-element__label">Website/Blog URL</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputField value="{!usrObj.Website_URL__c}" styleClass="slds-input"/>
+                                            </div>
+                                        </div>
+                                        <div class="slds-form-element">
                                             <label class="slds-form-element__label">Website/Blog Name</label>
                                             <div class="slds-form-element__control">
                                                 <apex:inputField value="{!usrObj.Website_Name__c}" styleClass="slds-input"/>
                                             </div>
                                         </div>
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label">Website/Blog URL</label>
+                                            <label class="slds-form-element__label">Set your weekly Goal to earn Badges</label>
                                             <div class="slds-form-element__control">
-                                                <apex:inputField value="{!usrObj.Website_URL__c}" styleClass="slds-input"/>
+                                                <apex:inputField value="{!usrObj.Weekly_Goal__c}" styleClass="slds-input"/>
                                             </div>
                                         </div>
                                         <div class="slds-form-element">
@@ -211,7 +217,16 @@
                                 <div class="slds-form-element__control">
                                     <apex:inputSecret value="{!usrObj.Password__c}" styleClass="slds-input"/>
                                 </div>
-                                <span>Please remember your password because I haven't build forgot password code. :)</span>
+                                <span>Contact me to reset the password using any channel: 
+                                    <br/>
+                                    <a href="https://twitter.com/0to1Code" target="_Blank">Twitter (0to1Code)</a>
+                                    <br/>
+                                    <a href="https://twitter.com/TheVishnuKumar" target="_Blank">Twitter (Vishnu Kumar)</a>
+                                    <br/>
+                                    <a href="https://www.linkedin.com/in/vishnukumarramawat/" target="_Blank">Linkedin</a>
+                                    <br/>
+                                    Email: vishnukumarramawat@gmail.com
+                                </span>
                             </div>
                             
                             <div class="slds-form-element">

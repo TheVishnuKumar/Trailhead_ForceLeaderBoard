@@ -1,43 +1,40 @@
 <apex:component controller="HeaderComponent">
-
+<title>Force Leader Board</title>
 <apex:attribute name="tab" type="string" description="tab name"/>
 
 <div>
-    <div class="slds-context-bar">
+    <div class="slds-context-bar" style="background: #074079;color: white;">
         <div class="slds-context-bar__primary">
             <div class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover">
-                <div class="slds-context-bar__icon-action">
-                    <img src="{!$Resource.logo}" style="height: 32px;"/>
-                </div>
                 <span class="slds-context-bar__label-action slds-context-bar__app-name">
-                <span class="slds-truncate" title="App Name">Leader Board</span>
+                <span class="slds-truncate" title="App Name">Force Leader Board</span>
                 </span>
             </div>
         </div>
         <nav class="slds-context-bar__secondary" role="navigation">
             <ul class="slds-grid">
                 <li class="slds-context-bar__item {!if(tab=='Home','slds-is-active','')}">
-                    <a href="/apex/home" class="slds-context-bar__label-action">
+                    <a href="/apex/home?redirect=false" class="slds-context-bar__label-action">
                     <span class="slds-truncate">Home</span>
                     </a>
                 </li>
                 <li class="slds-context-bar__item {!if(tab=='Board','slds-is-active','')}">
-                    <a href="/apex/LeaderBoard" class="slds-context-bar__label-action">
+                    <a href="/apex/LeaderBoard?redirect=false" class="slds-context-bar__label-action">
                     <span class="slds-truncate">Trailblazers Board</span>
                     </a>
                 </li>
                 <li class="slds-context-bar__item {!if(tab=='blogs','slds-is-active','')}">
-                    <a href="/apex/TrailblazersBlogs" class="slds-context-bar__label-action">
+                    <a href="/apex/TrailblazersBlogs?redirect=false" class="slds-context-bar__label-action">
                     <span class="slds-truncate">Trailblazers Blogs</span>
                     </a>
                 </li>
                 <li class="slds-context-bar__item">
-                    <a href="https://0to1code.wordpress.com/2018/03/04/trailhead-widget-add-customize-using-flb-api/" class="slds-context-bar__label-action">
+                    <a href="http://www.0to1code.com/introducing-trailhead-widget-add-customize-using-force-leader-board-api/" class="slds-context-bar__label-action">
                         <span class="slds-truncate">Trailhead Widget</span>
                     </a>
                 </li>
                 <li class="slds-context-bar__item {!if(tab=='api','slds-is-active','')}">
-                    <a href="/apex/APIExplorer" class="slds-context-bar__label-action">
+                    <a href="/apex/APIExplorer?redirect=false" class="slds-context-bar__label-action">
                         <span class="slds-truncate">APIs</span>
                     </a>
                 </li>
@@ -49,31 +46,47 @@
                 </li>
 
                 <li class="slds-context-bar__item">
-                    <a href="https://0to1code.wordpress.com/2018/02/25/salesforce-trailhead-and-certification-leader-board-forceleaderboard-unofficial/" class="slds-context-bar__label-action">
+                    <a href="http://www.0to1code.com/salesforce-trailhead-and-certification-leader-board-force-leader-board-unofficial/" class="slds-context-bar__label-action">
                         <span class="slds-truncate">About</span>
+                    </a>
+                </li>
+                <li class="slds-context-bar__item">
+                    <a href="https://github.com/TheVishnuKumar/Trailhead_ForceLeaderBoard" class="slds-context-bar__label-action">
+                        <span class="slds-truncate">Github Repo</span>
                     </a>
                 </li>
                 
                 <apex:outputPanel layout="none" rendered="{!usrObj.id == null }">
                     <li class="slds-context-bar__item {!if(tab=='profile','slds-is-active','')}">
-                        <a href="/apex/profile" class="slds-context-bar__label-action">
+                        <a href="/apex/profile?redirect=false" class="slds-context-bar__label-action">
                             <span class="slds-truncate">Join Board</span>
                         </a>
                     </li>
                 </apex:outputPanel>
                 <apex:outputPanel layout="none" rendered="{!usrObj.id != null }">
                     <li class="slds-context-bar__item {!if(tab=='profile','slds-is-active','')}">
-                        <a href="/apex/profile" class="slds-context-bar__label-action">
+                        <a href="/apex/profile?redirect=false" class="slds-context-bar__label-action">
                             <span class="slds-truncate">{!if( usrObj.name__c!= null , usrObj.name__c, usrObj.username__c) }</span>
                         </a>
                     </li>
                 </apex:outputPanel>
             </ul>
         </nav>
+        
+        
+    </div>
+    <div style="padding-top: 5px;text-align: center;">
+        <a href="https://codecoveragereportgenerator.herokuapp.com/" target="_Blank">
+            <img src="{!$Resource.Adv}" style="height: 48px;"/>
+        </a>
     </div>
 </div>
 
 <script>
+    if( '{!$CurrentPage.parameters.redirect}' != 'false'){
+        //window.location.href = 'http://forceleaderboard.0to1code.com/';
+    }
+    
     function showModal(modalId) {
         document.getElementById(modalId).style.display = 'block';
     }

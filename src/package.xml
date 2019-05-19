@@ -3,6 +3,11 @@
     <types>
         <members>APIExplorerController</members>
         <members>APIHelper</members>
+        <members>API_AllTrailblazersData</members>
+        <members>API_GetUserId</members>
+        <members>API_GetUserInformation</members>
+        <members>API_UpdateUserInformation</members>
+        <members>API_getTopTrailblazers</members>
         <members>CertificationReceiver</members>
         <members>HeaderComponent</members>
         <members>HomeController</members>
@@ -10,13 +15,15 @@
         <members>ManualRefresh</members>
         <members>PageMessage</members>
         <members>ProfileController</members>
-        <members>Session</members>
+        <members>ResetBadges</members>
+        <members>StringUtil</members>
         <members>TrailblazerAPIController</members>
         <members>TrailblazersBlogController</members>
-        <members>TrailheadReceiver</members>
+        <members>TweetUtil</members>
         <members>UpdateDataBatch</members>
         <members>UpdateDataHelper</members>
         <members>Utility</members>
+        <members>Z_SocialHandlesCtrl</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -34,6 +41,10 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>LastBadgeCalculation</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
         <members>Certification__c</members>
         <members>User__c</members>
         <name>CustomObject</name>
@@ -43,5 +54,5 @@
         <members>trailhead</members>
         <name>StaticResource</name>
     </types>
-    <version>36.0</version>
+    <version>45.0</version>
 </Package>

@@ -13,8 +13,9 @@ public class UpdateDataHelper{
         //Updating trailhead data
         if( string.isNotBlank( userObj.Trailhead_URL__c ) ){
             TrailheadReceiver thr = new TrailheadReceiver(userObj.Trailhead_URL__c);
+            system.debug('-thr.statusCode--'+thr.statusCode);
             if( thr.statusCode == 200 ){
-                userObj.Name__c = thr.name;
+                userObj.Name__c = thr.name != '' ? thr.name : userObj.name;
                 userObj.Title__c = thr.title != '' ? thr.title : userObj.Title__c;
                 userObj.Badges__c = thr.badges != 0 ? thr.badges : userObj.Badges__c;
                 userObj.Points__c = thr.points != 0 ? thr.points : userObj.Points__c;

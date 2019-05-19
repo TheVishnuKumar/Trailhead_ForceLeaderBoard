@@ -62,6 +62,12 @@
                                     <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" onclick="showStatus();doSort('Badges__c');" style="cursor:pointer;background:{!if(sortBy=='Badges__c', '#dedada', '')};">
                                         <span class="slds-truncate" title="Name">Badges</span>
                                     </th>
+                                    <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" onclick="showStatus();doSort('Weekly_Earned__c');" style="cursor:pointer;background:{!if(sortBy=='Weekly_Earned__c', '#dedada', '')};">
+                                        <span class="slds-truncate" title="Name">Weekly Earned</span>
+                                        <br/>
+                                        <span class="slds-truncate" style="font-size: 10px;">Last Reset:<apex:outputField value="{!lbSettings.Last_Reset_Date__c}"/></span>
+                                        
+                                    </th>
                                     <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" onclick="showStatus();doSort('Points__c');" style="cursor:pointer;background:{!if(sortBy=='Points__c', '#dedada', '')};width: 140px;">
                                         <span class="slds-truncate" title="Name">Points</span>
                                     </th>
@@ -88,6 +94,12 @@
                                         </th>
                                         <td role="gridcell">
                                             <a href="{!usr.usrObj.Trailhead_URL__c}" target="_Blank" style="text-transform: capitalize;">{!usr.usrObj.Name__c}</a>
+                                            <apex:outputPanel layout="none" rendered="{!usr.achievedWeeklyGoal!=null}"> 
+                                                 <div title="{!usr.achievedWeeklyGoal} Weekly Goal Reached" style="height: 10px;background: #d3d4b7;margin-top: 6px;width: 100px;border-radius: 5px;">
+                                                     <div style="background: green;height: 10px;width: {! IF(usr.achievedWeeklyGoal >100, 100, usr.achievedWeeklyGoal) }px;border-radius: 5px;"></div>
+                                                 </div>
+                                                 <span style="float: right;margin-top: -11px;font-size: 9px;">{!usr.achievedWeeklyGoal}%</span>
+                                             </apex:outputPanel>
                                         </td>
                                         <td role="gridcell">
                                             <apex:outputPanel layout="none" rendered="{!usr.usrObj.Certifications__c != 0}">
@@ -99,6 +111,12 @@
                                         </td>
                                         <td role="gridcell">
                                             {!usr.usrObj.Badges__c}
+                                        </td>
+                                        <td role="gridcell">
+                                             <span style="background:{!If(usr.usrObj.Weekly_Earned__c==0,'#d29526','green')} ;border-radius: 10px;padding: 2px;color: white;padding-right: 5px;" >+{!usr.usrObj.Weekly_Earned__c}</span>
+                                                
+                                             
+                                             
                                         </td>
                                         <td role="gridcell">
                                             <apex:outputField value="{!usr.usrObj.Points__c}"/>

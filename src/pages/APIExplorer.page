@@ -73,7 +73,7 @@
                     <c:HeaderComponent tab="api"/>
                     <c:PageMessages />
                     
-                    <a href="https://0to1code.wordpress.com/2018/02/27/introducing-trailhead-force-leader-board-api/" target="_Blank" style="margin-left: 200px;top: 58px;position: absolute;font-size: 17px;">Help</a>
+                    <a href="http://www.0to1code.com/introducing-trailhead-force-leader-board-api/" target="_Blank" style="margin-left: 200px;top: 58px;position: absolute;font-size: 17px;">Help</a>
                     
                     <apex:outputPanel layout="block" styleClass="slds-form slds-form_stacked callPanels" id="trailblazerProfilePanel">
                         <div class="sectionHeader"><span class="sectionHeading">1. Trailblazer Profile:</span> Get trailblazers profile data using trailblazer ID.</div>

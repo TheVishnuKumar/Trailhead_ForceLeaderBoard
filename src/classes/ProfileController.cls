@@ -7,26 +7,14 @@ public class ProfileController{
     public string userId{get;set;}
     
     public ProfileController(){
-        Session.UserWrapper uw = Session.getSession();
         usrObj = new user__c();
-        
-        if( uw != null ){
-            list<user__c> lstUser = [select username__c,password__c from user__c where username__c =: uw.username ];
-            
-            if( !lstUser.isEmpty() ){
-                if( lstUser[0].password__c == uw.password ){
-                    userId = lstUser[0].id;
-                    init();
-                }
-            }
-        }
     }
     
     public void init(){
         if( string.isNotBlank(userId) ){
-            usrObj = [select Name__c ,Title__c ,Profile_URL__c ,Badges__c ,Points__c , Certifications__c, Username__c, Password__c, Website_Name__c, Website_Description__c,
+            usrObj = [select Name__c ,Title__c ,Profile_URL__c, active__c,Badges__c ,Points__c , Certifications__c, Username__c, Password__c, Website_Name__c, Website_Description__c,
                       Website_URL__c, Website_Logo_URL__c,
-                      Trailhead_URL__c ,Certification_URL__c , Trailblazer_ID__c ,Facebook__c ,Linkedin__c ,Twitter__c ,name, Rank__c  from user__c where id =: userId ];
+                      Trailhead_URL__c ,Certification_URL__c ,Weekly_Goal__c, Trailblazer_ID__c ,Facebook__c ,Linkedin__c ,Twitter__c ,name, Rank__c  from user__c where id =: userId ];
         }
         else{
             usrObj = new user__c();
@@ -35,13 +23,13 @@ public class ProfileController{
     
     public void login(){
         try{
-            list<user__c> lstUser = [select username__c,password__c from user__c where username__c =: usrObj.username__c ];
+            list<user__c> lstUser = [select username__c,password__c,active__c from user__c where username__c =: usrObj.username__c ];
             
             if( !lstUser.isEmpty() ){
                 if( lstUser[0].password__c == usrObj.password__c ){
                     userId = lstUser[0].id;
-                    Session.create(usrObj);
                     PageMessage.addMessage(PageMessage.INfo, 'Logged in successfully.' );
+                    PageMessage.addMessage(PageMessage.INfo, 'Seesion will be destroyed if you refresh the page. In this case please login again.' );
                     init();
                 }
                 else{
@@ -51,8 +39,9 @@ public class ProfileController{
             else{
                 insert usrObj;
                 userId = usrObj.id;
-                Session.create(usrObj);
                 PageMessage.addMessage(PageMessage.INfo, 'Welcome to the Trailhead and Certification board!!!!' );
+                PageMessage.addMessage(PageMessage.INfo, 'Seesion will be destroyed if you refresh the page. In this case please login again.' );
+
                 init();
             }
         }
@@ -62,7 +51,6 @@ public class ProfileController{
     }
     
     public PageReference logout(){
-        Session.destroy();
         PageReference pg = new PageReference('/apex/home');
         pg.setRedirect(true);
         return pg;
@@ -70,6 +58,7 @@ public class ProfileController{
     
     public void save(){
         try{
+            usrObj.active__c =true;
             update usrObj;
             init();
         }
