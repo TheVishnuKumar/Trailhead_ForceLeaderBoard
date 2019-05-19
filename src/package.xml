@@ -46,6 +46,7 @@
     </types>
     <types>
         <members>Certification__c</members>
+        <members>LeaderBoard_Settings__c</members>
         <members>User__c</members>
         <name>CustomObject</name>
     </types>

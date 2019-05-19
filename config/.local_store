@@ -139,6 +139,20 @@
         "type": "ApexPage",
         "mmState": "clean"
     },
+    "LeaderBoard_Settings__c.object": {
+        "createdById": "0056A000001JZNBQA4",
+        "createdByName": "Trailhead LeaderBoard",
+        "createdDate": "2018-07-13T20:15:51.000Z",
+        "fileName": "unpackaged/objects/LeaderBoard_Settings__c.object",
+        "fullName": "LeaderBoard_Settings__c",
+        "id": "01I6A0000018RqUUAU",
+        "lastModifiedById": "0056A000001JZNBQA4",
+        "lastModifiedByName": "Trailhead LeaderBoard",
+        "lastModifiedDate": "2018-07-13T20:15:51.000Z",
+        "manageableState": "unmanaged",
+        "type": "CustomObject",
+        "mmState": "clean"
+    },
     "Certification__c.object": {
         "createdById": "0056A000001JZNBQA4",
         "createdByName": "Trailhead LeaderBoard",
